@@ -73,7 +73,7 @@ public class QtyPriceView: UIView {
     
     public func updateVolumeBar(ratio: Double) {
         volumeBar.snp.updateConstraints { make in
-            make.width.equalTo(50 * ratio)
+            make.width.equalTo(15 * ratio)
         }
     }
     
