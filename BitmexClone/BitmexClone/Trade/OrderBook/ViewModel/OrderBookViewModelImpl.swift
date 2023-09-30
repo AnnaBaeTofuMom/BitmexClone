@@ -39,14 +39,14 @@ class OrderBookViewModelImpl: OrderBookViewModel {
     
     private func observe() {
         internalBuyOrders.subscribe { [weak self] orders in
-            var prefixed = Array(orders.prefix(12))
+            var prefixed = Array(orders.prefix(20))
             prefixed = self?.calculateVolumeRatio(array: prefixed) ?? []
             self?.buyOrders.accept(prefixed)
         }
         .disposed(by: disposeBag)
         
         internalSellOrders.subscribe { [weak self] orders in
-            var prefixed = Array(orders.prefix(12))
+            var prefixed = Array(orders.prefix(20))
             prefixed = self?.calculateVolumeRatio(array: prefixed) ?? []
             self?.sellOrders.accept(prefixed)
         }
@@ -116,8 +116,8 @@ class OrderBookViewModelImpl: OrderBookViewModel {
         buyArray.sort { $0.price > $1.price }
         sellArray.sort { $0.price < $1.price }
         
-        buyArray = Array(buyArray.prefix(16))
-        sellArray = Array(sellArray.prefix(16))
+        buyArray = Array(buyArray.prefix(24))
+        sellArray = Array(sellArray.prefix(24))
         
         if !(self.internalBuyOrders.value == buyArray) {
             self.internalBuyOrders.accept(buyArray)
