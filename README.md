@@ -5,16 +5,16 @@
 
 ## Features
 ### Order Book
-[X] Subscribe orderBookL2:XBTUSD topic and get data.
-[X] Use size property as quantity.
-[x] Show 20 rows of Bid/Ask orders each.
-[x] Show accumulated size in each rows.
+[X] Subscribe orderBookL2:XBTUSD topic and get data.  
+[X] Use size property as quantity.  
+[x] Show 20 rows of Bid/Ask orders each.  
+[x] Show accumulated size in each rows.  
 
 ### Recent Trade
-[x] Subscribe trade:XBTUSD topic and get data. 
-[x] Show 30 recent trades
-[x] Color Bid/Ask row in green/red.
-[ ] Fill backgrounds of newly added items with lighter green/red colors for 0.2 seconds.
+[x] Subscribe trade:XBTUSD topic and get data.   
+[x] Show 30 recent trades.  
+[x] Color Bid/Ask row in green/red.  
+[ ] Fill backgrounds of newly added items with lighter green/red colors for 0.2 seconds.  
 
 ## Difficulties
 
