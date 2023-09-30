@@ -86,7 +86,6 @@ class RecentTradesTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(8)
         }
     }
-
 }
 
 
