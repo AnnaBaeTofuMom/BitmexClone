@@ -36,7 +36,7 @@ class RecentTradesViewModelImpl: RecentTradesViewModel {
     private func accumulateRecentTrades(recentTrades: RecentTrade) {
         var origin = self.recentTrades.value
         let mappedDTO = recentTrades.data.map { $0.toDomain() }.reversed()
-        origin = mappedDTO + origin
+        origin = Array(mappedDTO + origin.prefix(30))
         
         self.recentTrades.accept(origin)
     }
