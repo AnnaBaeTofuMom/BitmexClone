@@ -116,8 +116,8 @@ class OrderBookViewModelImpl: OrderBookViewModel {
         buyArray.sort { $0.price > $1.price }
         sellArray.sort { $0.price < $1.price }
         
-        buyArray = Array(buyArray.prefix(24))
-        sellArray = Array(sellArray.prefix(24))
+        buyArray = Array(buyArray.prefix(40))
+        sellArray = Array(sellArray.prefix(40))
         
         if !(self.internalBuyOrders.value == buyArray) {
             self.internalBuyOrders.accept(buyArray)
