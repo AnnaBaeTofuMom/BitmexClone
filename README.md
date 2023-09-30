@@ -1,52 +1,46 @@
-# Bitmex API로 따라만들어보기!!
+# Making Bitmex Clone using Bitmex API !!
 
-## 구현 영상
+## Preview
 ![ezgif com-video-to-gif (1)](https://github.com/AnnaBaeTofuMom/BitmexClone/assets/61861862/df160b05-9da3-4a6e-8491-44e7b945a42e)
 
-## 구현 항목 (필수항목 체크)
+## Features
 ### Order Book
-[X] orderBookL2:XBTUSD를 구독해서 정보를 받아옵니다.  
-[X] size가 qty로 사용됩니다.  
-[x] 매도/매수가 각각 20개씩 오름차순/내림차순으로 왼쪽과 오른쪽에 보여집니다.  
-[x] 합산된 볼륨을 각 행에 배경에 넣어주세요.  
+[X] Subscribe orderBookL2:XBTUSD topic and get data.
+[X] Use size property as quantity.
+[x] Show 20 rows of Bid/Ask orders each.
+[x] Show accumulated size in each rows.
 
 ### Recent Trade
-[x] trade:XBTUSD를 구독해서 정보를 받아옵니다.  
-[x] 최근 30개 내역을 최신순으로 보여줍니다.  
-[x] 매수는 초록, 매도는 빨강으로 나오도록 해주세요.  
-[ ] 새로 아이템이 추가되면 0.2초간 색이 채워지고 지워지도록 해주세요. (구현 항목인줄 인지 못하고 있었습니다!!! ㅠㅠ 죄송합니다)  
+[x] Subscribe trade:XBTUSD topic and get data. 
+[x] Show 30 recent trades
+[x] Color Bid/Ask row in green/red.
+[ ] Fill backgrounds of newly added items with lighter green/red colors for 0.2 seconds.
 
-## 어려웠던 점
+## Difficulties
 
-### 데이터 정합성
-소켓에서 주는 데이터들이 crud하는 과정에서 총 100개를 넘어가게 되면 정합성 이슈가 생길 수 있습니다.  
+### Data Consistency
+There can be data consistency issues if the data received from the socket exceeds 100 records during CRUD operations. To ensure data consistency, I implemented a system where I store only 100 buy and sell orders locally. Initially, I planned to store 25 or 40 records, but I increased it to 100 to improve data consistency. Managing the array of data and ensuring seamless CRUD operations for these records was challenging.
 
-저는 로컬에서 매수/매도시에 각각 100개씩만 호가 정보를 가지고 있도록 구현하였는데, 처음에는 25개, 40개만 하려고 했으나 정합성을 높이기 위해서 100개로 바꾸었습니다.  
+### Time Complexity
+I am not satisfied with the time complexity of my code. Although there are no N^2 iterations, I often check the entire length of the array, which can be inefficient. I believe there must be more efficient ways to handle this, but I am unsure about the best approach.
 
-그리고 배열로 가지고 있는 데이터를 CRUD 하는 것이 순차적으로 잘 일어나야 하는 부분이 어려웠습니다.
+## Areas for Improvement
 
-### 시간 복잡도
-제가 작성한 코드가 시간복잡도가 좋지 못한 것 같습니다.
-N^2번 도는 경우는 없긴 하지만, 배열의 길이만큼을 다 체크하는 경우가 많습니다.
-더 효율적인 방법이 있을 것 같은데 잘 모르겠습니다...
+### Architecture Design
+I feel the need to improve my skills in designing a robust system architecture. I am uncertain about the proper placement of files and components within the project, which indicates a gap in my understanding of good structural design principles.
 
-## 아쉬운 점
+### Integration of New Technologies
+I had initially planned to implement SwiftUI and Actors, but I found it challenging to grasp these concepts fully while working on the project. Consequently, I decided to stick with the stacks such as UIKit and Rx, which I am familiar with. However, I regret not being able to put more time in learn and integrate these new technologies.
 
-### 구조 설계 아쉬움
-아직 좋은 구조를 설계하는 부분에 학습이 더 필요한 것 같습니다. 파일을 어디에 배치하는 것이 맞을지 스스로도 잘 모르고 있다는 생각이 들었습니다.
+### Dependency Injection
+I overlooked the part where dependency injection should have been implemented. It's a relatively simple aspect, but I missed it, and I acknowledge this as an area for improvement.
 
-### 신규 스택을 적용하지 못했습니다.
-처음에 SwiftUI와 Actor를 적용하려고 했었으나 공부하면서 진행하기 어려울 것 같아서 중도에 포기하고 기존 스택으로 진행하였습니다.
+## Efforts Made
+### Handling Data Race
+The rapid influx of data through the socket posed a significant challenge regarding data race issues. To address this, I ensured that each view model maintains its separate queue, preventing data race problems and ensuring data consistency.
 
-### Dependency Containter
-주입을 해주는 부분을 빼먹었습니다. 간단한건데 아쉽습니다.
+### Efforts During the Holiday 🍁
+I had hoped to work on the project during the holiday period, but unexpected travel with my family and limited time hindered my progress. Nevertheless, I persevered and made consistent efforts to complete the assignment.
 
-## 노력한 점
-### Data Race
-워낙 소켓이 빠르게 들어와서 Data Race가 심하게 발생하는 환경이었습니다. 소켓 매니저가 큐를 들고 있을까 하다가
-그것도 한 큐에 너무 모일까봐 걱정이 되어서 각각의 뷰모델이 별도의 큐을 가지고 있도록 처리하였습니다.
 
-### 추석
-추석에 코딩할 수 있을 줄 알았는데, 시골집에 다녀오고 나니 시간이 삭제되었습니다...
-그래도 과제를 끝내려고 노력했습니다!
 
